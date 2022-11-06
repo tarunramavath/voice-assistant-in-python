@@ -5,7 +5,7 @@ import datetime
 import wikipedia
 import pyjokes
 
-listener = speech.Recognizer()
+listener = speech.Recognizer() #it recognize the words and initialize in listener
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
@@ -23,10 +23,10 @@ def take_command():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'alexa' in command:
+            if 'alexa' in command:#if alexa is present in the sentence then it ask you to give command again 
                 command = command.replace('alexa', '')
                 print(command)
-            elif 'siri' in command:
+            elif 'siri' in command:#if siri is present in the sentence then it ask you to give command again 
                 command = command.replace('siri', '')
                 print(command)
     except:
@@ -37,7 +37,7 @@ def take_command():
 def run_assistent():
     command = take_command()
     print(command)
-    if 'play' in command:
+    if 'play' in command:#few keywords to get certain usefull result
         song = command.replace('play', '')
         talk('playing ' + song)
         pywhatkit.playonyt(song)
@@ -75,6 +75,6 @@ def run_assistent():
         talk('Please say the command again.')
     
 
-while True:
+while True:#if while is true the process continues
     run_assistent()
     
